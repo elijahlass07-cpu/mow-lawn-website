@@ -4,7 +4,7 @@ import { Phone, Leaf, Wrench } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 
-export default function App() {
+export default function App()
   const [form, setForm] = useState({ name: '', email: '', message: '' })
 
   const handleChange = (e) => {
