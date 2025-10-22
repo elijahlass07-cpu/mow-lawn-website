@@ -1,0 +1,145 @@
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { Phone, Leaf, Wrench } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+
+export default function App() {
+  const [form, setForm] = useState({ name: '', email: '', message: '' })
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    alert('Thank you for your request! We will contact you soon.')
+    setForm({ name: '', email: '', message: '' })
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white text-gray-800">
+      {/* Header */}
+      <header className="flex justify-between items-center p-6 shadow-md bg-white">
+        <h1 className="text-2xl font-bold text-green-700">Mow Lawn & Landscape Equipment Repair</h1>
+        <div className="flex items-center gap-2 text-green-700 font-semibold">
+          <Phone size={18} /> (689) 267-9404
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="text-center py-20 bg-green-700 text-white relative">
+        <img
+          src="https://images.unsplash.com/photo-1600618528240-fb1e60b9fba8?auto=format&fit=crop&w=2000&q=80"
+          alt="Beautifully mowed yard"
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+        />
+        <div className="relative z-10">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl font-bold mb-4"
+          >
+            Your yard, our passion.
+          </motion.h2>
+          <p className="text-lg mb-6">Professional mowing, lawn care, and landscaping services done right.</p>
+          <Button className="bg-white text-green-700 font-semibold hover:bg-green-100">
+            Request a Quote
+          </Button>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-16 px-6 md:px-16">
+        <h3 className="text-3xl font-bold text-center text-green-700 mb-10">Our Services</h3>
+        <div className="grid md:grid-cols-3 gap-8">
+          <Card className="shadow-md border-green-100">
+            <CardContent className="p-6 text-center">
+              <img
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+                alt="Freshly mowed lawn"
+                className="rounded-xl mb-4 h-40 w-full object-cover"
+              />
+              <h4 className="font-semibold text-xl mb-2">Mowing</h4>
+              <p>Regular, reliable mowing to keep your yard looking sharp.</p>
+            </CardContent>
+          </Card>
+          <Card className="shadow-md border-green-100">
+            <CardContent className="p-6 text-center">
+              <img
+                src="https://images.unsplash.com/photo-1629167809405-fb5d616e7f56?auto=format&fit=crop&w=800&q=80"
+                alt="Lawn maintenance work"
+                className="rounded-xl mb-4 h-40 w-full object-cover"
+              />
+              <h4 className="font-semibold text-xl mb-2">Lawn Work</h4>
+              <p>From trimming to edging, we handle all your yard needs.</p>
+            </CardContent>
+          </Card>
+          <Card className="shadow-md border-green-100">
+            <CardContent className="p-6 text-center">
+              <img
+                src="https://images.unsplash.com/photo-1598970434795-0c54fe7c0642?auto=format&fit=crop&w=800&q=80"
+                alt="Landscaped garden with plants and walkway"
+                className="rounded-xl mb-4 h-40 w-full object-cover"
+              />
+              <h4 className="font-semibold text-xl mb-2">Landscaping</h4>
+              <p>Transform your property with our custom landscape design and care.</p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Quote Form */}
+      <section className="bg-green-50 py-16 px-6 md:px-16">
+        <h3 className="text-3xl font-bold text-center text-green-700 mb-10">Request a Quote</h3>
+        <form
+          onSubmit={handleSubmit}
+          className="max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-md border border-green-100"
+        >
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">Name</label>
+            <input
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              required
+              className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-600"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">Email</label>
+            <input
+              name="email"
+              type="email"
+              value={form.email}
+              onChange={handleChange}
+              required
+              className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-600"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">Message</label>
+            <textarea
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              rows="4"
+              required
+              className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-600"
+            ></textarea>
+          </div>
+          <Button type="submit" className="w-full bg-green-700 text-white hover:bg-green-800">
+            Submit Request
+          </Button>
+        </form>
+      </section>
+
+      {/* Footer */}
+      <footer className="text-center py-8 bg-green-700 text-white">
+        <p>© {new Date().getFullYear()} Mow Lawn & Landscape Equipment Repair. All rights reserved.</p>
+        <p className="text-sm opacity-80">Visit us at www.mowlawnlandscape.com</p>
+      </footer>
+    </div>
+  )
+}
